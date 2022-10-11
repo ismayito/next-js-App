@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Article from '../components/Article';
 export default function Home({articles}) {
 
   console.log(articles)
@@ -8,7 +9,8 @@ export default function Home({articles}) {
         <title>eb dev newz</title>
         <meta name="keywords" content="web news programming"></meta>
       </Head>
-      <h1>home</h1>
+      <Article articles={articles}></Article>
+    
      
     </div>
   )
