@@ -6,10 +6,7 @@ export default function Home({articles}) {
   console.log(articles)
   return (
     <div >
-      <Head>
-        <title>eb dev newz</title>
-        <meta name="keywords" content="web news programming"></meta>
-      </Head>
+      
       <Article articles={articles}></Article>
     
      
