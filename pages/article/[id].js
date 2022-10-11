@@ -1,6 +1,8 @@
 import React from 'react'
 import {useRouter} from "next/router"
 import Link from 'next/link';
+import { server } from '../../config';
+import { resolve } from 'styled-jsx/css';
 
 const article = ({article}) => {
     // const router= useRouter();
@@ -17,8 +19,21 @@ const article = ({article}) => {
 }
 
 export default article;
- 
 
+
+  export  const getStaticProps = async(context)=>{
+
+  const res = await fetch (` ${server}/api/article/${context.params.id}`);
+  const article =  await res.json()
+
+  return{
+    props:{
+      article
+
+    }
+  }
+ }
+ //using getStaticProps to fetch data dynamically from api
 export const getStaticPaths= async()=>{
     
     const res=await fetch(`https://jsonplaceholder.typicode.com/posts`);
@@ -39,15 +54,17 @@ export const getStaticPaths= async()=>{
  }
 
 
- export const getStaticProps= async( context)=>{
+//  export const getStaticProps= async( context)=>{
 
-    const res=await fetch(`https://jsonplaceholder.typicode.com/posts/${context.params.id}`);
-    const article=await res.json();
-    return {props:{
-        article
-    }}
+//     const res=await fetch(`https://jsonplaceholder.typicode.com/posts/${context.params.id}`);
+//     const article=await res.json();
+//     return {props:{
+//         article
+//     }}
 
- }
+//  }
+
+ // getserversideprops
 //  export const getServerSideProps= async( context)=>{
 
 //     const res=await fetch(`https://jsonplaceholder.typicode.com/posts/${context.params.id}`);
@@ -57,3 +74,5 @@ export const getStaticPaths= async()=>{
 //     }}
 
 //  }
+
+
